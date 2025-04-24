@@ -26,7 +26,7 @@ export async function main() {
     history.addMessage(userInput);
     try {
       const response = await bot.sendMessage(userInput);
-      readline.write(`${response}\n`);
+      output.write(`${response}\n`);
 
       userInput = await readline.question("> ");
     } catch (error) {

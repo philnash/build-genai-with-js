@@ -10,7 +10,8 @@
     "format": "prettier --write ./src",
     "format:check": "prettier --check ./src",
     "lint": "eslint ./src",
-    "start": "node --no-deprecation --env-file-if-exists=.env ./bin/agent.js"
+    "start": "node --no-deprecation --env-file-if-exists=.env ./bin/agent.js",
+    "dev": "node --no-deprecation --env-file-if-exists=.env --watch ./bin/agent.js"
   },
   "keywords": [],
   "author": "Phil Nash <philnash@gmail.com> (https://philna.sh/)",
