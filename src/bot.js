@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 import { env } from "node:process";
 
-export const genAI = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
+export const genAI = new GoogleGenAI({ apiKey: env.GOOGLE_API_KEY });
 
 export class Bot {
   constructor(options = {}) {
