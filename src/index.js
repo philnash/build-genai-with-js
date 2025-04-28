@@ -36,7 +36,7 @@ export async function main() {
         console.error(error);
       }
       userInput = await readline.question(
-        "\nSomething went wrong, try asking again\n\n> ",
+        "\nSomething went wrong, try asking again\n\n> "
       );
     }
   }

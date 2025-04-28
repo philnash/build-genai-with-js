@@ -1,18 +1,21 @@
 import { strict as assert } from "node:assert";
 import { assertions } from "promptfoo";
 
-const {  matchesLlmRubric } = assertions;
+const {
+  matchesLlmRubric,
+  matchesFactuality,
+  matchesAnswerRelevance,
+  matchesContextRecall,
+  matchesContextRelevance,
+  matchesContextFaithfulness,
+} = assertions;
 
-const config = {
+const LLMconfig = {
   provider: "google:gemini-2.0-flash",
 };
 
-
-export async function assertMatchesLLMRubric(
-  rubric,
-  output,
-) {
-  const gradingResult = await matchesLlmRubric(rubric, output, config);
+export async function assertMatchesLLMRubric(rubric, output) {
+  const gradingResult = await matchesLlmRubric(rubric, output, LLMconfig);
   assert(
     gradingResult.pass,
     `expected
@@ -25,26 +28,112 @@ but it did not. Reason:
   return gradingResult;
 }
 
-// Assertion.addAsyncMethod('toMatchFactuality', async function (input, expected, gradingConfig) {
-//   const received = this._obj;
-//   const gradingResult = await matchesFactuality(input, expected, received, gradingConfig);
+export async function assertMatchesFactuality(query, expected, output) {
+  const gradingResult = await matchesFactuality(
+    query,
+    expected,
+    output,
+    LLMconfig
+  );
+  assert(
+    gradingResult.pass,
+    `expected
+    "${output}"
+to match factuality with
+    "${expected}"
+but it did not. Reason:
+    "${gradingResult.reason}"`
+  );
+  return gradingResult;
+}
 
-//   this.assert(
-//     gradingResult.pass,
-//     `expected #{this} to match factuality with #{exp}, but it did not. Reason: ${gradingResult.reason}`,
-//     `expected #{this} not to match factuality with #{exp}`,
-//     expected,
-//   );
-// });
+export async function assertMatchesAnswerRelevance(
+  query,
+  output,
+  threshold = 0.8
+) {
+  const gradingResult = await matchesAnswerRelevance(query, output, threshold);
+  assert(
+    gradingResult.pass,
+    `expected
+    "${output}"
+to match answer relevance with query
+    "${query}"
+but it did not. Reason:
+    "${gradingResult.reason}"`
+  );
+  return gradingResult;
+}
 
-// Assertion.addAsyncMethod('toMatchClosedQA', async function (input, expected, gradingConfig) {
-//   const received = this._obj;
-//   const gradingResult = await matchesClosedQa(input, expected, received, gradingConfig);
+export async function assertMatchesContextRecall(
+  context,
+  groundTruth,
+  threshold = 0.8
+) {
+  const gradingResult = await matchesContextRecall(
+    context,
+    groundTruth,
+    threshold,
+    LLMconfig
+  );
+  console.log(gradingResult);
+  assert(
+    gradingResult.pass,
+    `expected
+    "${groundTruth}"
+to match context recall with context
+    "${context}"
+but it did not. Reason:
+    "${gradingResult.reason}"`
+  );
+  return gradingResult;
+}
 
-//   this.assert(
-//     gradingResult.pass,
-//     `expected #{this} to match ClosedQA with #{exp}, but it did not. Reason: ${gradingResult.reason}`,
-//     `expected #{this} not to match ClosedQA with #{exp}`,
-//     expected,
-//   );
-// });
+export async function assertMatchesContextRelevance(
+  question,
+  context,
+  threshold = 0.8
+) {
+  const gradingResult = await matchesContextRelevance(
+    question,
+    context,
+    threshold,
+    LLMconfig
+  );
+  assert(
+    gradingResult.pass,
+    `expected
+    "${context}"
+to match context relevance with question
+    "${question}"
+but it did not. Reason:
+    "${gradingResult.reason}"`
+  );
+  return gradingResult;
+}
+
+export async function assertMatchesContextFaithfulness(
+  query,
+  output,
+  context,
+  threshold = 0.8
+) {
+  const gradingResult = await matchesContextFaithfulness(
+    query,
+    output,
+    context,
+    threshold,
+    LLMconfig
+  );
+  assert(
+    gradingResult.pass,
+    `expected
+    "${output}"
+to match context faithfulness with query
+    "${query}" and context
+    "${context}"
+but it did not. Reason:
+    "${gradingResult.reason}"`
+  );
+  return gradingResult;
+}

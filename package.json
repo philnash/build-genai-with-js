@@ -12,7 +12,8 @@
     "lint": "eslint ./src",
     "start": "node --no-deprecation --env-file-if-exists=.env ./bin/agent.js",
     "dev": "node --no-deprecation --env-file-if-exists=.env --watch --watch-preserve-output ./bin/agent.js",
-    "test": "node --env-file=.env --test"
+    "test": "node --env-file=.env --test",
+    "test:promptfoo": "promptfoo eval -c ./test/evals.yml --env-file=.env"
   },
   "keywords": [],
   "author": "Phil Nash <philnash@gmail.com> (https://philna.sh/)",
