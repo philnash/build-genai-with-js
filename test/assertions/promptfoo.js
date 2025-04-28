@@ -28,10 +28,10 @@ but it did not. Reason:
   return gradingResult;
 }
 
-export async function assertMatchesFactuality(query, expected, output) {
+export async function assertMatchesFactuality(query, groundTruth, output) {
   const gradingResult = await matchesFactuality(
     query,
-    expected,
+    groundTruth,
     output,
     LLMconfig
   );
@@ -40,7 +40,7 @@ export async function assertMatchesFactuality(query, expected, output) {
     `expected
     "${output}"
 to match factuality with
-    "${expected}"
+    "${groundTruth}"
 but it did not. Reason:
     "${gradingResult.reason}"`
   );
@@ -76,7 +76,6 @@ export async function assertMatchesContextRecall(
     threshold,
     LLMconfig
   );
-  console.log(gradingResult);
   assert(
     gradingResult.pass,
     `expected

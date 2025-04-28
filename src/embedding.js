@@ -5,6 +5,6 @@ export async function embed(text) {
     model: "text-embedding-004",
     contents: text,
   });
-  // console.log(response.embeddings);
+
   return response.embeddings[0].values;
 }
