@@ -10,8 +10,6 @@ export class Bot {
     this.topP = options.topP || 0.95;
     this.topK = options.topK || 30;
     this.systemPrompt = options.systemPrompt || "You are a helpful assistant.";
-    this.toolConfig = options.toolConfig || {};
-    this.tools = options.tools || [];
 
     this.chat = genAI.chats.create({
       model: this.modelName,
@@ -22,14 +20,13 @@ export class Bot {
         maxOutputTokens: 8192,
         responseMimeType: "text/plain",
         systemInstruction: this.systemPrompt,
-        toolConfig: this.toolConfig,
-        tools: this.tools,
       },
     });
   }
 
-  async sendMessage(message) {
-    return await this.chat.sendMessage({ message });
+  async sendMessage(query) {
+    const message = await this.chat.sendMessage({ message: query });
+    return message.text;
   }
 
   async sendMessageStream(query) {

@@ -1,8 +1,8 @@
 import { join } from "node:path";
 import { readFile } from "node:fs/promises";
 
-import { collection } from "../../src/db.js";
-import { embed } from "../../src/embedding.js";
+import { collection } from "./db.js";
+import { embed } from "./embedding.js";
 
 async function ingest() {
   const path = join(import.meta.dirname, "./faqs.md");
