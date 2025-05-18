@@ -55,9 +55,35 @@ async function faqSearch({ query }) {
   return { output: results.map((doc) => doc.content).join("\n") };
 }
 
-export const functions = { add, date, faqSearch };
+const fetchUrlDeclaration = {
+  name: "fetchUrl",
+  description: "Fetch the content of a URL or browser a website.",
+  parameters: {
+    type: Type.OBJECT,
+    description: "The URL to fetch",
+    required: ["url"],
+    properties: {
+      url: {
+        type: Type.STRING,
+        description: "The URL to fetch",
+      },
+    },
+  },
+};
+
+async function fetchUrl({ url }) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch URL: ${response.statusText}`);
+  }
+  const text = await response.text();
+  return { output: text };
+}
+
+export const functions = { add, date, faqSearch, fetchUrl };
 export const functionDeclarations = [
   addFunctionDeclaration,
   dateFunctionDeclaration,
   faqSearchDeclaration,
+  fetchUrlDeclaration,
 ];

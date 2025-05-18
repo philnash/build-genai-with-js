@@ -10,7 +10,7 @@ Open `src/index.js` and start by importing `genAI` from `./bot.js`. This is an a
 
 On line 25 you will find where we echo the response.
 
-You should use the [`generateContent` function](https://ai.google.dev/gemini-api/docs/text-generation) of the `genAI` object to generate a response from Gemini. You will need to pass an object with two properties, a `model` (I recommend "gemini-2.0-flash" for this workshop) and `contents`, the user input.
+You should use the [`models.generateContent` function](https://ai.google.dev/gemini-api/docs/text-generation) of the `genAI` object to generate a response from Gemini. You will need to pass an object with two properties, a `model` (I recommend "gemini-2.0-flash" for this workshop) and `contents`, the user input.
 
 That will return a response object and you can print out the `text` property.
 

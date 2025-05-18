@@ -7,6 +7,7 @@ description: "My eval"
 prompts:
   - "Write a tweet about {{topic}}"
   - "Write a concise, funny tweet about {{topic}}"
+  - "Write a LinkedIn post about {{topic}} and relate it to enterprise sales"
 
 providers:
   - "google:gemini-2.0-flash"
@@ -34,4 +35,5 @@ tests:
     assert:
       # For more information on model-graded evals, see https://promptfoo.dev/docs/configuration/expected-outputs/model-graded
       - type: llm-rubric
-        value: ensure that the output is funny
+        value: ensure that the output is factual
+        provider: "google:gemini-2.0-flash"
