@@ -2,6 +2,8 @@
 
 ## Agents
 
+I encourage you to try to build out the simple agent loop within the code. There is an example to fall back on, but understanding how it fits together will help. Note, you will need to update the `Bot` class to receive `tools` and `toolConfig` parameters and pass them on to the generated chat.
+
 The agent loop can be a pain to get right, but you can get the code, with the new prompt and tool config from the `index.js` file in this directory.
 
 Once you have that, it's time to write some tools!
