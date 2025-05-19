@@ -52,12 +52,7 @@ export async function assertMatchesAnswerRelevance(
   output,
   threshold = 0.8
 ) {
-  const gradingResult = await matchesAnswerRelevance(query, output, threshold, {
-    provider: {
-      embedding: { id: "vertex:embedding:text-embedding-005" },
-      text: { id: "google:gemini-2.0-flash" },
-    },
-  });
+  const gradingResult = await matchesAnswerRelevance(query, output, threshold);
   assert(
     gradingResult.pass,
     `expected

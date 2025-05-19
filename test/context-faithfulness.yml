@@ -3,7 +3,7 @@ description: "Context faithfulness tests"
 
 prompts:
   - |
-    You're a helpful assistant. Answer the question based on the context provided.
+    You're a helpful assistant. Answer the question based on the context provided. Do not mention that you are answering based on the context.
 
     Context: {{context}}
 

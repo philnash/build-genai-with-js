@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
-description: "Context relevance tests"
+description: "Context recall tests"
 
 prompts:
   - |

@@ -30,9 +30,9 @@ describe("the bot", () => {
     await assertMatchesAnswerRelevance(query, output);
   });
 
-  // test("should match context recall", async () => {
-  //   console.log(await assertMatchesContextRecall(context, output));
-  // });
+  test("should match context recall", async () => {
+    console.log(await assertMatchesContextRecall(context, output));
+  });
 
   test("should test context faithfulness", async () => {
     await assertMatchesContextFaithfulness(query, output, context);
